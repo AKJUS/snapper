@@ -53,7 +53,7 @@ namespace snapper
 
 	enum class Column
 	{
-	    NAME, CONFIG, TARGET_MODE, AUTOMATIC, SOURCE_PATH, TARGET_PATH, SSH_HOST,
+	    NAME, CONFIG, TARGET_MODE, AUTOMATIC, TARGET_PATH, SSH_HOST,
 	    SSH_USER, SSH_PORT, SSH_IDENTITY, TARGET_BTRFS_BIN, TARGET_LS_BIN,
 	    TARGET_MKDIR_BIN, TARGET_RM_BIN, TARGET_RMDIR_BIN
 	};
@@ -75,9 +75,6 @@ namespace snapper
 
 		case Column::AUTOMATIC:
 		    return Cell(_("Automatic"));
-
-		case Column::SOURCE_PATH:
-		    return Cell(_("Source Path"));
 
 		case Column::TARGET_PATH:
 		    return Cell(_("Target Path"));
@@ -131,9 +128,6 @@ namespace snapper
 
 		case Column::AUTOMATIC:
 		    return backup_config.automatic;
-
-		case Column::SOURCE_PATH:
-		    return backup_config.source_path;
 
 		case Column::TARGET_PATH:
 		    return backup_config.target_path;
@@ -290,11 +284,11 @@ namespace snapper
 	}
 
 	const vector<Column> some_columns = { Column::NAME, Column::CONFIG, Column::TARGET_MODE,
-	    Column::AUTOMATIC, Column::SOURCE_PATH, Column::TARGET_PATH, Column::SSH_HOST,
+	    Column::AUTOMATIC, Column::TARGET_PATH, Column::SSH_HOST,
 	    Column::SSH_USER, Column::SSH_PORT, Column::SSH_IDENTITY };
 
 	const vector<Column> all_columns = { Column::NAME, Column::CONFIG, Column::TARGET_MODE,
-	    Column::AUTOMATIC, Column::SOURCE_PATH, Column::TARGET_PATH, Column::SSH_HOST,
+	    Column::AUTOMATIC, Column::TARGET_PATH, Column::SSH_HOST,
 	    Column::SSH_USER, Column::SSH_PORT, Column::SSH_IDENTITY, Column::TARGET_BTRFS_BIN,
 	    Column::TARGET_LS_BIN, Column::TARGET_MKDIR_BIN, Column::TARGET_RM_BIN,
 	    Column::TARGET_RMDIR_BIN
@@ -320,7 +314,7 @@ namespace snapper
     template <> struct EnumInfo<Column> { static const vector<string> names; };
 
     const vector<string> EnumInfo<Column>::names({
-	"name", "config", "target-mode", "automatic", "source-path", "target-path", "ssh-host",
+	"name", "config", "target-mode", "automatic", "target-path", "ssh-host",
 	"ssh-user", "ssh-port", "ssh-identity", "target-btrfs-bin", "target-ls-bin",
 	"target-mkdir-bin", "target-rm-bin", "target-rmdir-bin"
     });

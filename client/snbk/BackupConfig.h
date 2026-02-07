@@ -57,7 +57,6 @@ namespace snapper
 
 	TargetMode target_mode = TargetMode::LOCAL;
 
-	string source_path;
 	string target_path;
 
 	bool automatic = false;

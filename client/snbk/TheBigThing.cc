@@ -109,9 +109,10 @@ namespace snapper
 	    return nodes;
 	}
 
-	string source_snapshot_dir(const BackupConfig& backup_config, unsigned int num)
+	string source_snapshot_dir(const ProxySnapper* snapper, unsigned int num)
 	{
-	    return backup_config.source_path + "/" SNAPSHOTS_NAME "/" + to_string(num);
+	    return snapper->getConfig().getSubvolume() + "/" SNAPSHOTS_NAME "/" +
+	           to_string(num);
 	}
 
 	string target_snapshot_dir(const BackupConfig& backup_config, unsigned int num)
@@ -356,7 +357,7 @@ namespace snapper
 	spec_source.shell = backup_config.get_source_shell();
 	spec_source.mkdir_bin = MKDIR_BIN;
 	spec_source.btrfs_bin = BTRFS_BIN;
-	spec_source.snapshot_dir = source_snapshot_dir(backup_config, num);
+	spec_source.snapshot_dir = source_snapshot_dir(the_big_things.snapper, num);
 
 	CopySpec spec_target; // Copy specification for the snapshot on the target.
 	spec_target.shell = backup_config.get_target_shell();
@@ -381,7 +382,8 @@ namespace snapper
 		        the_big_things.source_tree.find_nearest_valid_node(source_uuid))
 		{
 		    spec_source.parent_subvol_path =
-		        source_snapshot_dir(backup_config, parent->node->get_number()) +
+		        source_snapshot_dir(the_big_things.snapper,
+		                            parent->node->get_number()) +
 		        "/" SNAPSHOT_NAME;
 		}
 
@@ -437,14 +439,6 @@ namespace snapper
 	  target_btrfs_version(backup_config.target_btrfs_bin, backup_config.get_target_shell()),
 	  snapper(snappers->getSnapper(backup_config.config)), locker(snapper)
     {
-	if (backup_config.source_path != snapper->getConfig().getSubvolume())
-	{
-	    string error = sformat(_("Path mismatch between source-path of backup-config and subvolume of "
-				     "snapper config ('%s' vs. '%s')."), backup_config.source_path.c_str(),
-				   snapper->getConfig().getSubvolume().c_str());
-	    SN_THROW(Exception(error));
-	}
-
 	probe_source(backup_config, verbose);
 	probe_target(backup_config, verbose);
 
@@ -479,8 +473,9 @@ namespace snapper
 
 	    // Query additional information (uuids, read-only) from btrfs.
 
-	    CmdBtrfsSubvolumeShow extra(BTRFS_BIN, shell_source, backup_config.source_path + "/" SNAPSHOTS_NAME "/" +
-					to_string(num) + "/" SNAPSHOT_NAME);
+	    CmdBtrfsSubvolumeShow extra(BTRFS_BIN, shell_source,
+	                                source_snapshot_dir(snapper, num) +
+	                                    "/" SNAPSHOT_NAME);
 
 	    TheBigThing the_big_thing(num);
 	    the_big_thing.date = source_snapshot.getDate();

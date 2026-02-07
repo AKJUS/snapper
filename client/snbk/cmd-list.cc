@@ -232,8 +232,7 @@ namespace snapper
 		if (backup_configs.size() > 1)
 		{
 		    cout << "Backup-config:" << backup_config.name << ", config:" << backup_config.config
-			 << ", source-path:" << backup_config.source_path << ", target-mode:"
-			 << toString(backup_config.target_mode) << endl;
+			 << ", target-mode:" << toString(backup_config.target_mode) << endl;
 		}
 
 		try

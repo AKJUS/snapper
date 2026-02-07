@@ -52,9 +52,6 @@ namespace snapper
 	if (!toValue(tmp1, target_mode, false))
 	    SN_THROW(Exception(sformat("unknown target-mode '%s' in '%s'", tmp1.c_str(), name.c_str())));
 
-	if (!get_child_value(json_file.get_root(), "source-path", source_path))
-	    SN_THROW(Exception(sformat("source-path entry not found in '%s'", name.c_str())));
-
 	if (!get_child_value(json_file.get_root(), "target-path", target_path))
 	    SN_THROW(Exception(sformat("target-path entry not found in '%s'", name.c_str())));
 
