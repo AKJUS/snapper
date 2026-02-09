@@ -163,9 +163,10 @@ namespace snapper
 	TreeView source_tree;
 	TreeView target_tree;
 
+	const ProxySnapper* snapper;
+
     private:
 
-	const ProxySnapper* snapper;
 	const Locker locker;
 
 	vector<TheBigThing> the_big_things;
