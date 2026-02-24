@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: snapper\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-28 14:27+0100\n"
-"PO-Revision-Date: 2025-07-22 14:59+0000\n"
-"Last-Translator: Julia Faltenbacher <julia.faltenbacher@suse.com>\n"
-"Language-Team: Danish <https://l10n.opensuse.org/projects/snapper/master/da/>\n"
+"PO-Revision-Date: 2026-02-24 18:04+0000\n"
+"Last-Translator: Peter Andreasen <noesgaard@gmail.com>\n"
+"Language-Team: Danish <https://l10n.opensuse.org/projects/snapper/master/da/>"
+"\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.16\n"
 
 msgid "\tsnapper cleanup <cleanup-algorithm>"
 msgstr "\tsnapper cleanup <oprydningsalgoritme>"
@@ -640,9 +641,9 @@ msgstr "  Slet konfiguration:"
 msgid "Deleting config failed (%s)."
 msgstr "Sletning af konfiguration mislykkedes (%s)."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting snapshot %d."
-msgstr "Sletning af øjebliksbillede mislykkedes."
+msgstr "Sletter øjebliksbillede %d."
 
 msgid "Deleting snapshot failed."
 msgstr "Sletning af øjebliksbillede mislykkedes."
@@ -802,17 +803,17 @@ msgstr "Ugyldige konfigurationsdata."
 msgid "Invalid free-space value."
 msgstr "Ugyldigt underdiskområde."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid group (%s)."
-msgstr "Ugyldig gruppe."
+msgstr "Ugyldig gruppe (%s)."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid logger-type '%s'."
-msgstr "Ugyldig tabelstil %d."
+msgstr "Ugyldig logger-type '%s'."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid machine readable format '%s'."
-msgstr "Ugyldig tabelstil %d."
+msgstr "Ugyldigt maskin-læsbart format '%s'."
 
 #, fuzzy, c-format
 msgid "Invalid path '%s'."
@@ -825,24 +826,24 @@ msgstr "Ugyldigt øjebliksbillede \"%s\"."
 msgid "Invalid snapshots."
 msgstr "Ugyldige øjebliksbilleder."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid subvolume path '%s' on target."
-msgstr "Ugyldigt underdiskområde."
+msgstr "Ugyldigt subvolume sti '%s' på destination."
 
 msgid "Invalid subvolume."
 msgstr "Ugyldigt underdiskområde."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid table style '%s'."
-msgstr "Ugyldig tabelstil %d."
+msgstr "Ugyldig tabelstil '%s'."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid target mode '%s'."
-msgstr "Ugyldig tabelstil %d."
+msgstr "Ugyldig tilstand for destination '%s'."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid user (%s)."
-msgstr "Ugyldig bruger."
+msgstr "Ugyldig bruger (%s)."
 
 msgid "Invalid userdata."
 msgstr "Ugyldige brugerdata."
@@ -1048,9 +1049,9 @@ msgstr ""
 msgid "Restore:"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Restoring snapshot %d."
-msgstr "Sletning af øjebliksbillede mislykkedes."
+msgstr "Genetablerer øjebliksbillede %d."
 
 #, fuzzy
 msgid "Run command and create pre and post snapshots."
@@ -1201,9 +1202,9 @@ msgstr "Øjebliksbilledet er i brug."
 msgid "Snapshot not on target."
 msgstr "Øjebliksbilledet \"%u\" blev ikke fundet."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Snapshot number %d not found."
-msgstr "Øjebliksbilledet \"%u\" blev ikke fundet."
+msgstr "Øjebliksbillede nummer %d blev ikke fundet."
 
 msgid "Source Path"
 msgstr ""
@@ -1284,9 +1285,9 @@ msgstr ""
 msgid "Transfer:"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Transferring snapshot %d."
-msgstr "Oprettelse af øjebliksbillede mislykkedes."
+msgstr "Overfører øjebliksbillede %d."
 
 msgid "Try 'snapper --help' for more information."
 msgstr "Prøv \"snapper --help\" for at få mere information."
