@@ -87,18 +87,29 @@ namespace snapper
 	int stat(struct stat* buf) const;
 
 	int stat(const string& name, struct stat* buf, int flags) const;
+
 	int open(const string& name, int flags) const;
 	int open(const string& name, int flags, mode_t mode) const;
+
 	ssize_t readlink(const string& name, string& buf) const;
+
 	int mkdir(const string& name, mode_t mode) const;
+
 	int unlink(const string& name, int flags = 0) const;
 	int rmdir(const string& name) const
 	    { return unlink(name, AT_REMOVEDIR); }
+
 	int chmod(const string& name, mode_t mode, int flags) const;
 	int chown(const string& name, uid_t owner, gid_t group, int flags) const;
+
 	int rename(const string& oldname, const string& newname, int flags = 0) const;
 	int exchange(const string& oldname, const string& newname) const
 	    { return rename(oldname, newname, RENAME_EXCHANGE); }
+
+	int rename(const string& oldname, const SDir& new_dir, const string& newname, int flags = 0) const;
+	int exchange(const string& oldname, const SDir& new_dir, const string& newname) const
+	    { return rename(oldname, new_dir, newname, RENAME_EXCHANGE); }
+
 	int fsync() const;
 
 	// Query size and free.
