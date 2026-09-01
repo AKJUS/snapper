@@ -392,6 +392,19 @@ namespace snapper
 
 
     int
+    SDir::rename(const string& oldname, const SDir& new_dir, const string& newname, int flags) const
+    {
+	assert(oldname.find('/') == string::npos);
+	assert(oldname != "..");
+
+	assert(newname.find('/') == string::npos);
+	assert(newname != "..");
+
+	return ::renameat2(dirfd, oldname.c_str(), new_dir.dirfd, newname.c_str(), flags);
+    }
+
+
+    int
     SDir::fsync() const
     {
 	return ::fsync(dirfd);
