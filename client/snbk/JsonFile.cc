@@ -194,6 +194,32 @@ namespace snapper
     }
 
 
+    template <>
+    bool
+    get_child_value(json_object* parent, const char* name, map<string, string>& value)
+    {
+	json_object* child;
+
+	if (!json_object_object_get_ex(parent, name, &child))
+	    return false;
+	if (!json_object_is_type(child, json_type_object))
+	    return false;
+
+	map<string, string> result;
+	json_object_object_foreach(child, key, val)
+	{
+	    if (!json_object_is_type(val, json_type_string))
+		return false;
+
+	    result[key] = json_object_get_string(val);
+	}
+
+	value = result;
+
+	return true;
+    }
+
+
     bool
     get_child_nodes(json_object* parent, const char* name, vector<string>& values)
     {

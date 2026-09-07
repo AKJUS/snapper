@@ -25,6 +25,7 @@
 
 #include "config.h"
 
+#include <map>
 #include <string>
 #include <vector>
 
@@ -36,6 +37,7 @@
 namespace snapper
 {
 
+    using std::map;
     using std::string;
     using std::vector;
 
@@ -47,6 +49,25 @@ namespace snapper
 	enum class TargetMode
 	{
 	    LOCAL, SSH_PUSH
+	};
+
+	enum class RetentionPolicy
+	{
+	    /**
+	     * The default policy means keeping the snapshots on the backup device
+	     * identical to the source device. If the retention policy (`retention-policy`
+	     * in the config) is set to `default`, the retention config
+	     * (`retention-config` in the config) is ignored.
+	     */
+	    DEFAULT,
+
+	    /**
+	     * The custom policy means the snapshot retention can be different from the
+	     * source device. The behavior can be controlled via `retention-config` in the
+	     * config. The parameters share the same names as `snapper` options (e.g.,
+	     * NUMBER_LIMIT, TIMELINE_LIMIT_HOURLY, ...).
+	     */
+	    CUSTOM
 	};
 
 	BackupConfig(const string& name);
@@ -81,6 +102,9 @@ namespace snapper
 	string target_rm_bin = RM_BIN;
 	string target_rmdir_bin = RMDIR_BIN;
 
+	RetentionPolicy retention_policy = RetentionPolicy::DEFAULT;
+	map<string, string> retention_config;
+
     private:
 
 	vector<string> ssh_options() const;
@@ -92,6 +116,11 @@ namespace snapper
 
 
     template <> struct EnumInfo<BackupConfig::TargetMode> { static const vector<string> names; };
+
+    template <> struct EnumInfo<BackupConfig::RetentionPolicy>
+    {
+	static const vector<string> names;
+    };
 
 
     vector<string>

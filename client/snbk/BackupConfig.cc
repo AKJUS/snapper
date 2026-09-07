@@ -37,6 +37,9 @@ namespace snapper
 
     const vector<string> EnumInfo<BackupConfig::TargetMode>::names({ "local", "ssh-push" });
 
+    const vector<string> EnumInfo<BackupConfig::RetentionPolicy>::names({ "default",
+                                                                          "custom" });
+
 
     BackupConfig::BackupConfig(const string& name)
 	: name(name)
@@ -77,6 +80,18 @@ namespace snapper
 	get_child_value(json_file.get_root(), "target-mkdir-bin", target_mkdir_bin);
 	get_child_value(json_file.get_root(), "target-rm-bin", target_rm_bin);
 	get_child_value(json_file.get_root(), "target-rmdir-bin", target_rmdir_bin);
+
+	if (get_child_value(json_file.get_root(), "retention-policy", tmp1))
+	{
+	    if (!toValue(tmp1, retention_policy, false))
+		SN_THROW(Exception(sformat("unknown retention-policy '%s' in '%s'",
+		                           tmp1.c_str(), name.c_str())));
+	    if (retention_policy == RetentionPolicy::CUSTOM &&
+	        !get_child_value(json_file.get_root(), "retention-config",
+	                         retention_config))
+		SN_THROW(Exception(
+		    sformat("retention-config entry not found in '%s'", name.c_str())));
+	}
     }
 
 
